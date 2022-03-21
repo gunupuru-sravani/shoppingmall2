@@ -1,0 +1,78 @@
+QL> select * from shoppingmall;
+
+    BILLID CNAME            PHNO BILLAMOUNT
+---------- ---------- ---------- ----------
+      1001 chaithu         76548       1000
+      1002 divya           87548       5000
+      1003 sravani         67548       2000
+      1004 vidya           34548       1500
+      1005 ramya           74548       2500
+> create table resturant(billid number(10),cname varchar2(10),phno number(10),billamount number(10));
+
+Table created.
+
+SQL> insert into resturant values(billid.nextval,'vidya',34548,1500);
+
+1 row created.
+
+SQL> select * from resturant;
+
+    BILLID CNAME            PHNO BILLAMOUNT
+---------- ---------- ---------- ----------
+      1006 vidya           34548       1500
+
+SQL> insert into resturant values(billid.nextval,'lakshmi',9948,1200);
+
+1 row created.
+
+SQL> select * from resturant;
+
+    BILLID CNAME            PHNO BILLAMOUNT
+---------- ---------- ---------- ----------
+      1006 vidya           34548       1500
+      1007 lakshmi          9948       1200
+
+SQL> select * from shoppingmall union select * from resturant;
+
+    BILLID CNAME            PHNO BILLAMOUNT
+---------- ---------- ---------- ----------
+      1001 chaithu         76548       1000
+      1002 divya           87548       5000
+      1003 sravani         67548       2000
+      1004 vidya           34548       1500
+      1005 ramya           74548       2500
+      1006 vidya           34548       1500
+      1007 lakshmi          9948       1200
+
+7 rows selected.
+
+SQL> select * from shoppingmall intersect select * from resturant;
+
+no rows selected
+
+SQL> insert into resturant values(1001,'chaithu',76548,1000);
+
+1 row created.
+
+SQL> select * from resturant;
+
+    BILLID CNAME            PHNO BILLAMOUNT
+---------- ---------- ---------- ----------
+      1006 vidya           34548       1500
+      1007 lakshmi          9948       1200
+      1001 chaithu         76548       1000
+
+SQL> select * from shoppingmall intersect select * from resturant;
+
+    BILLID CNAME            PHNO BILLAMOUNT
+---------- ---------- ---------- ----------
+      1001 chaithu         76548       1000
+
+SQL> select * from shoppingmall minus select * from resturant;
+
+    BILLID CNAME            PHNO BILLAMOUNT
+---------- ---------- ---------- ----------
+      1002 divya           87548       5000
+      1003 sravani         67548       2000
+      1004 vidya           34548       1500
+      1005 ramya           74548       2500
